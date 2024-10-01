@@ -1,4 +1,4 @@
-import { View, Image } from "@react-pdf/renderer";
+import { View, Image, Line } from "@react-pdf/renderer";
 import {
   ResumePDFIcon,
   type IconType,
@@ -10,6 +10,7 @@ import {
   ResumePDFText,
 } from "components/Resume/ResumePDF/common";
 import type { ResumeProfile } from "lib/redux/types";
+import { DEFAULT_BLACK } from "lib/redux/settingsSlice";
 
 export const ResumePDFProfile = ({
   profile,
@@ -20,8 +21,20 @@ export const ResumePDFProfile = ({
   themeColor: string;
   isPDF: boolean;
 }) => {
-  const { name, email, phone, url, summary, location, picture } = profile;
-  const iconProps = { email, phone, location, url };
+  const {
+    name,
+    email,
+    phone,
+    url,
+    summary,
+    homeAddress,
+    picture,
+    dateOfBirth,
+    gender,
+    nationality,
+  } = profile;
+  const iconProps = { email, phone, homeAddress, url };
+  console.log(name, dateOfBirth, gender, nationality);
 
   return (
     <ResumePDFSection style={{ marginTop: spacing["4"] }}>
@@ -46,6 +59,51 @@ export const ResumePDFProfile = ({
           >
             {name}
           </ResumePDFText>
+          <View
+            style={{
+              height: 3,
+              margin: spacing["1"],
+              backgroundColor: themeColor,
+              marginVertical: spacing["0.5"],
+            }}
+          />
+          <View
+            style={{
+              ...styles.flexRowBetween,
+              flexWrap: "wrap",
+              marginTop: spacing["0.5"],
+              justifyContent: "space-between",
+              maxWidth: picture ? "80%" : "100%",
+            }}
+          >
+            {dateOfBirth && (
+              <ResumePDFText
+                bold={true}
+                style={{ fontSize: "10pt" }}
+                themeColor={DEFAULT_BLACK}
+              >
+                DOB: {dateOfBirth}
+              </ResumePDFText>
+            )}
+            {nationality && (
+              <ResumePDFText
+                bold={true}
+                style={{ fontSize: "10pt" }}
+                themeColor={DEFAULT_BLACK}
+              >
+                Nationality: {nationality}
+              </ResumePDFText>
+            )}
+            {gender && (
+              <ResumePDFText
+                bold={true}
+                themeColor={DEFAULT_BLACK}
+                style={{ fontSize: "10pt" }}
+              >
+                Gender: {gender}
+              </ResumePDFText>
+            )}
+          </View>
           {summary && (
             <ResumePDFText
               style={{
@@ -103,9 +161,7 @@ export const ResumePDFProfile = ({
 
           let iconType = key as IconType;
           if (key === "url") {
-            if (value.includes("github")) {
-              iconType = "url_github";
-            } else if (value.includes("linkedin")) {
+            if (value.includes("linkedin")) {
               iconType = "url_linkedin";
             }
           }

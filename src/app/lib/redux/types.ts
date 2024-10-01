@@ -4,8 +4,11 @@ export interface ResumeProfile {
   phone: string;
   url: string;
   summary: string;
-  location: string;
+  homeAddress: string;
   picture?: string;
+  dateOfBirth: string;
+  gender: string;
+  nationality: string;
 }
 
 export interface ResumeWorkExperience {

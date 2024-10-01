@@ -15,7 +15,18 @@ import { ArrowUpOnSquareIcon } from "@heroicons/react/24/outline";
 export const ProfileForm = () => {
   const profile = useAppSelector(selectProfile);
   const dispatch = useAppDispatch();
-  const { name, email, phone, url, summary, location, picture } = profile;
+  const {
+    name,
+    email,
+    phone,
+    url,
+    summary,
+    homeAddress,
+    picture,
+    dateOfBirth,
+    gender,
+    nationality,
+  } = profile;
 
   const handleProfileChange = (field: keyof ResumeProfile, value: string) => {
     dispatch(changeProfile({ field, value }));
@@ -54,16 +65,44 @@ export const ProfileForm = () => {
           onChange={handleProfileChange}
         />
         <Textarea
-          label="Objective"
+          label="Summary"
           labelClassName="col-span-full"
           name="summary"
           placeholder="A Right Recruiter can hire a right talent"
           value={summary}
-          maxLength={280}
+          maxLength={4000}
           onChange={handleProfileChange}
         />
         <Input
-          label="Email"
+          label="Home Address"
+          labelClassName="col-span-4"
+          name="homeAddress"
+          placeholder="Kathmandu, Nepal"
+          value={homeAddress}
+          onChange={handleProfileChange}
+        />
+
+        <Input
+          label="Date of Birth"
+          labelClassName="col-span-4"
+          name="dateOfBirth"
+          type="date"
+          placeholder="YYYY-MM-DD"
+          value={dateOfBirth}
+          onChange={handleProfileChange}
+        />
+
+        <Input
+          label="Nationality"
+          labelClassName="col-span-2"
+          name="nationality"
+          placeholder="Nepali"
+          value={nationality}
+          onChange={handleProfileChange}
+        />
+
+        <Input
+          label="Email Address"
           labelClassName="col-span-4"
           name="email"
           placeholder="sarojphuyal@gmail.com"
@@ -71,15 +110,16 @@ export const ProfileForm = () => {
           onChange={handleProfileChange}
         />
         <Input
-          label="Phone"
+          label="Gender"
           labelClassName="col-span-2"
-          name="phone"
-          placeholder="(977) 9851345343"
-          value={phone}
+          name="gender"
+          placeholder="sarojphuyal@gmail.com"
+          value={gender}
           onChange={handleProfileChange}
         />
+
         <Input
-          label="Website"
+          label="Social Media Link"
           labelClassName="col-span-4"
           name="url"
           placeholder="linkedin.com/speed-wings-human-resource"
@@ -87,13 +127,14 @@ export const ProfileForm = () => {
           onChange={handleProfileChange}
         />
         <Input
-          label="Location"
+          label="Phone Number"
           labelClassName="col-span-2"
-          name="location"
-          placeholder="Kathmandu, Nepal"
-          value={location}
+          name="phone"
+          placeholder="(977) 9851345343"
+          value={phone}
           onChange={handleProfileChange}
         />
+
         <div className="flex w-[100%] items-end gap-1 lg:w-[46%]">
           <InputGroupWrapper label={"Profile Picture"} className={"col-span-2"}>
             <div className="flex h-[100px] w-[200px] items-center justify-center border">
