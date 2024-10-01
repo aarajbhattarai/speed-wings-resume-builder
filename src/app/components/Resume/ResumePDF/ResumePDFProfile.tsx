@@ -28,16 +28,15 @@ export const ResumePDFProfile = ({
       <View
         style={{
           ...styles.flexRowBetween,
-          flexWrap: "wrap",
           marginTop: spacing["0.5"],
+          alignItems: "flex-start",
         }}
       >
         <View
           style={{
             ...styles.flexCol,
-            flexWrap: "wrap",
             marginTop: spacing["0.5"],
-            maxWidth: picture ? "80%" : "100%",
+            maxWidth: picture ? "75%" : "100%",
           }}
         >
           <ResumePDFText
@@ -48,48 +47,48 @@ export const ResumePDFProfile = ({
             {name}
           </ResumePDFText>
           {summary && (
-            <View
+            <ResumePDFText
               style={{
-                display: "flex",
-                //   flexWrap: "wrap",
-                //   maxWidth: "100%",
-                //   overflow: "hidden",
+                marginTop: 20,
+                textAlign: "justify",
               }}
             >
-              <ResumePDFText
-                style={{
-                  marginTop: 20,
-                  textAlign: "justify",
-                }}
-              >
-                {summary}
-              </ResumePDFText>
-            </View>
+              {summary}
+            </ResumePDFText>
           )}
         </View>
 
-        {picture !== "" ? (
-          <View style={{ alignContent: "center" }}>
-            <Image
-              src={picture}
-              style={{
-                width: 100,
-                height: 100,
-                borderRadius: 40,
-                marginLeft: spacing["1"],
-              }}
-            />
-            <img
-              src={picture}
-              style={{
-                width: 100,
-                height: 100,
-                borderRadius: 40,
-                marginLeft: spacing["1"],
-              }}
-            />
+        {picture && (
+          <View
+            style={{
+              marginLeft: spacing["2"],
+              width: 100,
+              height: 100,
+              borderColor: themeColor,
+              alignContent: "center",
+            }}
+          >
+            {isPDF ? (
+              <Image
+                src={picture}
+                style={{
+                  width: 100,
+                  height: 100,
+                  borderRadius: 20,
+                }}
+              />
+            ) : (
+              <img
+                src={picture}
+                style={{
+                  width: 100,
+                  height: 100,
+                  borderRadius: 20,
+                }}
+              />
+            )}
           </View>
-        ) : null}
+        )}
       </View>
 
       <View
