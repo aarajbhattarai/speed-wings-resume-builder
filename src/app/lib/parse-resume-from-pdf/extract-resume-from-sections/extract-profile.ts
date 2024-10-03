@@ -182,6 +182,9 @@ export const extractProfile = (sections: ResumeSectionToLines) => {
       email,
       phone,
       homeAddress,
+      dateOfBirth,
+      nationality,
+      gender,
       url,
       // Dedicated section takes higher precedence over profile summary
       summary: summarySection || objectiveSection || summary,
