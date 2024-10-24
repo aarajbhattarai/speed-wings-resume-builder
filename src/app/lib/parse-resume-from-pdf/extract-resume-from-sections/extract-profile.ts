@@ -12,7 +12,7 @@ import {
   hasLetterAndIsAllUpperCase,
 } from "lib/parse-resume-from-pdf/extract-resume-from-sections/lib/common-features";
 import { getTextWithHighestFeatureScore } from "lib/parse-resume-from-pdf/extract-resume-from-sections/lib/feature-scoring-system";
-
+import { DATE_FEATURE_SETS } from "lib/parse-resume-from-pdf/extract-resume-from-sections/lib/common-features";
 // Name
 export const matchOnlyLetterSpaceOrPeriod = (item: TextItem) =>
   item.text.match(/^[a-zA-Z\s\.]+$/);
@@ -142,6 +142,18 @@ export const extractProfile = (sections: ResumeSectionToLines) => {
     textItems,
     LOCATION_FEATURE_SETS
   );
+  const [dateOfBirth, dateOfBirthScores] = getTextWithHighestFeatureScore(
+    textItems,
+    DATE_FEATURE_SETS
+  );
+  const [gender, genderScores] = getTextWithHighestFeatureScore(
+    textItems,
+    NAME_FEATURE_SETS
+  );
+  const [nationality,nationalityScores] = getTextWithHighestFeatureScore(
+    textItems,
+    NAME_FEATURE_SETS
+  );
   const [url, urlScores] = getTextWithHighestFeatureScore(
     textItems,
     URL_FEATURE_SETS
@@ -170,6 +182,9 @@ export const extractProfile = (sections: ResumeSectionToLines) => {
       email,
       phone,
       homeAddress,
+      dateOfBirth,
+      nationality,
+      gender,
       url,
       // Dedicated section takes higher precedence over profile summary
       summary: summarySection || objectiveSection || summary,
@@ -180,6 +195,9 @@ export const extractProfile = (sections: ResumeSectionToLines) => {
       email: emailScores,
       phone: phoneScores,
       homeAddress: homeAddressScores,
+      dateOfBirth: dateOfBirthScores,
+      nationality: nationalityScores,
+      gender: genderScores,
       url: urlScores,
       summary: summaryScores,
     },
