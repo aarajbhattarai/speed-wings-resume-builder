@@ -12,6 +12,13 @@ import { ResumeTable } from "resume-parser/ResumeTable";
 import { FlexboxSpacer } from "components/FlexboxSpacer";
 import { ResumeParserAlgorithmArticle } from "resume-parser/ResumeParserAlgorithmArticle";
 
+export const metadata = {
+  title: "Speed Wings Resume Parser",
+  description:
+    "Speed Wings Resume Parser allows everyone to parse a resume. For people with an existing resume, Speed Wings Resume Builder and Parser also provides a resume parser to help test and confirm its ATS readability."
+};
+
+
 const RESUME_EXAMPLES = [
   {
     fileUrl: "resume-example/atssampleresume.pdf",

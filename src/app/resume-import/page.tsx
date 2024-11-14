@@ -4,6 +4,13 @@ import { ResumeDropzone } from "components/ResumeDropzone";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
+export const metadata = {
+  title: "Speed Wings Resume Importer",
+  description:
+    "Speed Wings Resume Import allows everyone to import a resume and create a new one. For those who have an existing resume, Speed Wings Resume Builder and Parser also provides a resume parser to help test and confirm its ATS readability."
+};
+
+
 export default function ImportResume() {
   const [hasUsedAppBefore, setHasUsedAppBefore] = useState(false);
   const [hasAddedResume, setHasAddedResume] = useState(false);
