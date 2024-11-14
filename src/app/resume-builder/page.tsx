@@ -4,11 +4,6 @@ import { store } from "lib/redux/store";
 import { ResumeForm } from "components/ResumeForm";
 import { Resume } from "components/Resume";
 
-export const metadata = {
-  title: "Speed Wings Resume Builder",
-  description:
-    "Speed Wings Resume Builder allows everyone to create a modern professional resume"
-};
 
 export default function Create() {
   return (
