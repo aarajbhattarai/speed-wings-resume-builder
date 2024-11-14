@@ -55,6 +55,8 @@ export const initialSkills: ResumeSkills = {
   descriptions: [],
 };
 
+export const initialFeaturedSkill: FeaturedSkill = { language: "", rating: 4 };
+
 export const initialCustom = {
   descriptions: [],
 };
@@ -66,6 +68,7 @@ export const initialResumeState: Resume = {
   projects: [initialProject],
   skills: initialSkills,
   custom: initialCustom,
+
 };
 
 // Keep the field & value type in sync with CreateHandleChangeArgsWithDescriptions (components\ResumeForm\types.ts)
@@ -152,7 +155,19 @@ export const resumeSlice = createSlice({
         featuredSkill.rating = rating;
       }
     },
-    changeCustom: (
+    changeLanguages: (
+      draft,
+      action: PayloadAction<
+        | { field: "descriptions"; value: string[] }
+    >
+    ) => {
+      const { field } = action.payload;
+      
+        const { value } = action.payload;
+        draft.skills.descriptions = value;
+      
+    },
+    changeCustom: ( n
       draft,
       action: PayloadAction<{ field: "descriptions"; value: string[] }>
     ) => {
@@ -224,6 +239,7 @@ export const {
   changeEducations,
   changeProjects,
   changeSkills,
+  changeLanguages,
   changeCustom,
   addSectionInForm,
   moveSectionInForm,
@@ -239,6 +255,7 @@ export const selectWorkExperiences = (state: RootState) =>
 export const selectEducations = (state: RootState) => state.resume.educations;
 export const selectProjects = (state: RootState) => state.resume.projects;
 export const selectSkills = (state: RootState) => state.resume.skills;
+export const selectLanguages = (state: RootState) => state.resume.languages;
 export const selectCustom = (state: RootState) => state.resume.custom;
 
 export default resumeSlice.reducer;

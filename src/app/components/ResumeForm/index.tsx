@@ -13,8 +13,10 @@ import { ProjectsForm } from "components/ResumeForm/ProjectsForm";
 import { SkillsForm } from "components/ResumeForm/SkillsForm";
 import { ThemeForm } from "components/ResumeForm/ThemeForm";
 import { CustomForm } from "components/ResumeForm/CustomForm";
+import { LanguageForm } from "components/ResumeForm/LanguageForm";
 import { FlexboxSpacer } from "components/FlexboxSpacer";
 import { cx } from "lib/cx";
+
 
 const formTypeToComponent: { [type in ShowForm]: () => JSX.Element } = {
   workExperiences: WorkExperiencesForm,
@@ -22,6 +24,7 @@ const formTypeToComponent: { [type in ShowForm]: () => JSX.Element } = {
   projects: ProjectsForm,
   skills: SkillsForm,
   custom: CustomForm,
+  languages: LanguageForm
 };
 
 export const ResumeForm = () => {

@@ -37,6 +37,10 @@ export interface FeaturedSkill {
   rating: number;
 }
 
+export interface Language{
+  languages: string[];
+}
+
 export interface ResumeSkills {
   featuredSkills: FeaturedSkill[];
   descriptions: string[];
@@ -53,6 +57,7 @@ export interface Resume {
   projects: ResumeProject[];
   skills: ResumeSkills;
   custom: ResumeCustom;
+  languages: Language;
 }
 
 export type ResumeKey = keyof Resume;
